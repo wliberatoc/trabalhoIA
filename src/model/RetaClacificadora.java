@@ -11,12 +11,21 @@ package model;
  */
 public class RetaClacificadora {
     private float taxaDeAprendizado;
-    private float pontoX;
-    private float pontoY;
-    private float w0 = 0;
-    private float w1 = 0;
-    private float w2 = 0;
+    private float pontoA;
+    private float pontoB;
+    private float pontoC;
+    private float w0 = 1;
+    private float w1 = 1;
+    private float w2 = -1;
     private float coeficienteAgular;
+
+    public float getPontoC() {
+        return pontoC;
+    }
+
+    public void setPontoC(float pontoC) {
+        this.pontoC = pontoC;
+    }
     
     public float getTaxaDeAprendizado() {
         return taxaDeAprendizado;
@@ -52,20 +61,20 @@ public class RetaClacificadora {
         this.taxaDeAprendizado = taxaDeAprendizado;
     }
 
-    public float getPontoX() {
-        return pontoX;
+    public float getPontoA() {
+        return pontoA;
     }
 
-    public void setPontoX(float pontoX) {
-        this.pontoX = pontoX;
+    public void setPontoA(float pontoA) {
+        this.pontoA = pontoA;
     }
 
-    public float getPontoY() {
-        return pontoY;
+    public float getPontoB() {
+        return pontoB;
     }
 
-    public void setPontoY(float pontoY) {
-        this.pontoY = pontoY;
+    public void setPontoB(float pontoB) {
+        this.pontoB = pontoB;
     }
 
     public float getCoeficienteAgular() {

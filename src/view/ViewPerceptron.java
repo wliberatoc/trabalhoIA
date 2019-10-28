@@ -44,6 +44,8 @@ public class ViewPerceptron extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         campoGrafico = new javax.swing.JTextArea();
         textGrafico = new javax.swing.JLabel();
+        textAprendizado = new javax.swing.JLabel();
+        campoN = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Perceptron");
@@ -100,37 +102,51 @@ public class ViewPerceptron extends javax.swing.JFrame {
 
         textGrafico.setText("Gráfico:");
 
+        textAprendizado.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        textAprendizado.setText("Informe a taxa de aprendizado:");
+
+        campoN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(163, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textGrafico)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnCancelar)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnOk))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textPontos)
-                                .addComponent(textReta))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(campoA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(textX)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(campoB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textY)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(campoC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(campoPontos)))
-                        .addComponent(jScrollPane1)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textPontos)
+                            .addComponent(textReta))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(campoA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(textX)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textY)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoPontos)))
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textAprendizado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(campoN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textGrafico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)
+                        .addGap(86, 86, 86)
+                        .addComponent(btnOk)))
                 .addGap(164, 164, 164))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,15 +164,22 @@ public class ViewPerceptron extends javax.swing.JFrame {
                     .addComponent(campoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textX)
                     .addComponent(textY))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnOk))
-                .addGap(4, 4, 4)
-                .addComponent(textGrafico)
+                    .addComponent(campoN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textAprendizado))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(textGrafico))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnOk))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,12 +240,18 @@ public class ViewPerceptron extends javax.swing.JFrame {
                 float a = Float.parseFloat(campoA.getText());//converte de String pra float o ponto A
                 float b = Float.parseFloat(campoB.getText());//converte de String pra float o ponto B
                 float c = Float.parseFloat(campoC.getText());//converte de String pra float o ponto C
-                ControllerPerceptron cp = new ControllerPerceptron (caminho, a, b, c);
+                float n = Float.parseFloat(campoN.getText());//converte de String pra float a taxa de aprendizado N
+                ControllerPerceptron cp = new ControllerPerceptron (caminho, a, b, c, n);
             }catch(NumberFormatException e){//caso tenha erro na conversão aparece a mensagem
-                JOptionPane.showMessageDialog(null, "ERRO!! Campos da reta devem contonter apenas números", "Perceptron", 0);
+                JOptionPane.showMessageDialog(null, "ERRO!! Campos da reta e da taxa de aprendizado"+
+                        " devem contonter apenas números", "Perceptron", 0);
             }
         }
     }//GEN-LAST:event_btnOkActionPerformed
+
+    private void campoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,9 +295,11 @@ public class ViewPerceptron extends javax.swing.JFrame {
     private javax.swing.JTextField campoB;
     private javax.swing.JTextField campoC;
     private javax.swing.JTextArea campoGrafico;
+    private javax.swing.JTextField campoN;
     private javax.swing.JTextField campoPontos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel textAprendizado;
     private javax.swing.JLabel textGrafico;
     private javax.swing.JLabel textPontos;
     private javax.swing.JLabel textReta;
