@@ -51,13 +51,9 @@ public class ControllerPerceptron {
                     lista.add(pt);//addiciona esses objetos a lista              
                 }
             } while (linha != null);
-            this.rc.setPontoA(a);//seta ponto x da reta
-            this.rc.setPontoB(b);//seta ponto y da reta
-            this.rc.setPontoC(c);//seta ponto y da reta
-            float m = 0;
-            if(b!=0)//trata dvisão por zero
-               m = -(a/b);// calcula o coeficiente angular da reta
-            this.rc.setCoeficienteAgular(m);//seta o coeficiente angular da reta  
+            this.rc.setW1(a);//seta ponto x da reta
+            this.rc.setW2(b);//seta ponto y da reta
+            this.rc.setW0(-c);//seta ponto y da reta
         } catch (IOException e) {//caso o arwuivo não seja encontrado ou tenha erro aparece a mensagem
             JOptionPane.showMessageDialog(null, "Erro na leitura, Verifique se o arquivo está correto", "Perceptron", 0);
         } 
@@ -69,35 +65,47 @@ public class ControllerPerceptron {
         float novoW1;
         float novoW2;
         boolean chave;
+        int ultimoErrado = 0;
         for(int i=0; i<this.lista.size(); i++){
             teste = (this.rc.getW1()*this.lista.get(i).getX())+(this.rc.getW2()*this.lista.get(i).getY())+this.rc.getW0();
-            if(this.lista.get(i).getClasse()== 0 && teste>0){//teste deve ser <= 
+            if(this.lista.get(i).getClasse()== 0 && teste>0){//teste deve ser <= 0
                 novoW0 = this.rc.getW0() -(this.n)*1;
                 novoW1 = this.rc.getW1() -(this.n)*this.lista.get(i).getX();
                 novoW2 = this.rc.getW2() -(this.n)*this.lista.get(i).getY();
                 this.rc.setW0(novoW0);
                 this.rc.setW1(novoW1);
                 this.rc.setW2(novoW2);
+                ultimoErrado = i;   
                 chave = false;
             }
-            if(this.lista.get(i).getClasse()== 1 && teste<=0){//teste deve ser >  
+            if(this.lista.get(i).getClasse()== 1 && teste<=0){//teste deve ser > 0 
                 novoW0 = this.rc.getW0() +(this.n)*1;
                 novoW1 = this.rc.getW1() +(this.n)*this.lista.get(i).getX();
                 novoW2 = this.rc.getW2() +(this.n)*this.lista.get(i).getY();
                 this.rc.setW0(novoW0);
                 this.rc.setW1(novoW1);
                 this.rc.setW2(novoW2);
+                ultimoErrado = i;
                 chave = false;
             }else{
                 chave = true;
             }
             if(i+1 == this.lista.size() && chave==false)
                 i=0;
-        }
-            
-            
-            
-            
-           
-    }
+            else if(i+1 == this.lista.size() && chave==true)
+                for(int j=0; j<ultimoErrado;j++){
+                    teste = (this.rc.getW1()*this.lista.get(j).getX())+(this.rc.getW2()*this.lista.get(j).getY())+this.rc.getW0();
+                    if(this.lista.get(j).getClasse()== 0 && teste>0){//teste deve ser <= 0
+                        chave = false;
+                        i=j;
+                        break;
+                    }
+                    if(this.lista.get(j).getClasse()== 1 && teste<=0){//teste deve ser > 0 
+                        chave = false;
+                        i=j;
+                        break;
+                    }
+                }//fim for de dentro
+        }//fim do for de fora           
+    }//fim função perceptron 
 }//fim class leitura

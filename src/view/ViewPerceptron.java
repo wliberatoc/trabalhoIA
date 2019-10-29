@@ -220,32 +220,52 @@ public class ViewPerceptron extends javax.swing.JFrame {
         campoA.setText("");
         campoB.setText("");
         campoC.setText("");
+        campoN.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // botao OK
         String caminho = campoPontos.getText();
+        String A       = campoA.getText();
+        String B       = campoB.getText();
+        String C       = campoC.getText();
+        String N       = campoN.getText();
         if (caminho.isEmpty())//se caminho vazio aparece a mensagem
             JOptionPane.showMessageDialog(null, "ERRO!! Campo dos pontos está vazio", "Perceptron", 0);
+        else if(campoN.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "ERRO!! Taxa de aprendizado deve ser um número entre 0 e 1", "Perceptron", 0);
         else{
             if(!caminho.contains(".txt"))//se caminho não tiver .txt adiciona-o
                 caminho+=".txt";
+            if(A.contains(","))//trata a , no campoA
+                A = A.replace(",", ".");
+            if(B.contains(","))//trata a , no campoA
+                B = B.replace(",", ".");
+            if(C.contains(","))//trata a , no campoA
+                C = C.replace(",", ".");
+            if(N.contains(","))//trata a , no campoA
+                N = N.replace(",", ".");
+            if(campoA.getText().isEmpty())//se campoA vazio passa ele como zero
+                campoA.setText("0");
+            if(campoB.getText().isEmpty())//se campoB vazio passa ele como zero
+                campoB.setText("0");
+            if(campoC.getText().isEmpty())//se campoC vazio passa ele como zero
+                campoC.setText("0");
             try{
-                if(campoA.getText().isEmpty())//se campoA vazio passa ele como zero
-                    campoA.setText("0");
-                if(campoB.getText().isEmpty())//se campoB vazio passa ele como zero
-                    campoB.setText("0");
-                if(campoC.getText().isEmpty())//se campoC vazio passa ele como zero
-                    campoC.setText("0");
-                float a = Float.parseFloat(campoA.getText());//converte de String pra float o ponto A
-                float b = Float.parseFloat(campoB.getText());//converte de String pra float o ponto B
-                float c = Float.parseFloat(campoC.getText());//converte de String pra float o ponto C
-                float n = Float.parseFloat(campoN.getText());//converte de String pra float a taxa de aprendizado N
-                ControllerPerceptron cp = new ControllerPerceptron (caminho, a, b, c, n);
+                if(Float.parseFloat(N)<= 0 || Float.parseFloat(N)>1)
+                    JOptionPane.showMessageDialog(null, "ERRO!! Taxa de aprendizado deve ser um número entre 0 e 1", "Perceptron", 0);
+                else{
+                    float a = Float.parseFloat(A);//converte de String pra float o ponto A
+                    float b = Float.parseFloat(B);//converte de String pra float o ponto B
+                    float c = Float.parseFloat(C);//converte de String pra float o ponto C
+                    float n = Float.parseFloat(N);//converte de String pra float a taxa de aprendizado N
+                    ControllerPerceptron cp = new ControllerPerceptron (caminho, a, b, c, n);
+                    cp.perceptron();
+                }
             }catch(NumberFormatException e){//caso tenha erro na conversão aparece a mensagem
                 JOptionPane.showMessageDialog(null, "ERRO!! Campos da reta e da taxa de aprendizado"+
                         " devem contonter apenas números", "Perceptron", 0);
-            }
+            }//fi catch
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
