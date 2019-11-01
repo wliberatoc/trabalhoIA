@@ -59,7 +59,7 @@ public class ControllerPerceptron {
         } 
     }//fim construtor 
     
-    public void perceptron(){
+    public String perceptron(){
         float teste;
         float novoW0;
         float novoW1;
@@ -106,6 +106,7 @@ public class ControllerPerceptron {
                         break;
                     }
                 }//fim for de dentro
-        }//fim do for de fora           
+        }//fim do for de fora
+        return  this.rc.getW1()+"x + ("+this.rc.getW2()+")y = "+(-this.rc.getW0());
     }//fim função perceptron 
 }//fim class leitura
