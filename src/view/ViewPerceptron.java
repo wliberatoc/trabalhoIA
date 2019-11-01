@@ -41,11 +41,10 @@ public class ViewPerceptron extends javax.swing.JFrame {
         textY = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        campoGrafico = new javax.swing.JTextArea();
-        textGrafico = new javax.swing.JLabel();
+        textResultado = new javax.swing.JLabel();
         textAprendizado = new javax.swing.JLabel();
         campoN = new javax.swing.JTextField();
+        campoResultado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Perceptron");
@@ -95,12 +94,7 @@ public class ViewPerceptron extends javax.swing.JFrame {
             }
         });
 
-        campoGrafico.setEditable(false);
-        campoGrafico.setColumns(20);
-        campoGrafico.setRows(5);
-        jScrollPane1.setViewportView(campoGrafico);
-
-        textGrafico.setText("Gráfico:");
+        textResultado.setText("Resultado:");
 
         textAprendizado.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         textAprendizado.setText("Informe a taxa de aprendizado:");
@@ -111,13 +105,21 @@ public class ViewPerceptron extends javax.swing.JFrame {
             }
         });
 
+        campoResultado.setEditable(false);
+        campoResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoResultadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnOk)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textPontos)
@@ -135,18 +137,19 @@ public class ViewPerceptron extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(campoC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(campoPontos)))
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textAprendizado)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textAprendizado)
+                            .addComponent(textResultado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textGrafico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar)
-                        .addGap(86, 86, 86)
-                        .addComponent(btnOk)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(campoN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97))
+                            .addComponent(campoResultado)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(btnCancelar)))
                 .addGap(164, 164, 164))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,18 +171,15 @@ public class ViewPerceptron extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textAprendizado))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(textGrafico))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelar)
-                            .addComponent(btnOk))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textResultado))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOk)
+                    .addComponent(btnCancelar))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,15 +188,15 @@ public class ViewPerceptron extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,7 +260,7 @@ public class ViewPerceptron extends javax.swing.JFrame {
                     float c = Float.parseFloat(C);//converte de String pra float o ponto C
                     float n = Float.parseFloat(N);//converte de String pra float a taxa de aprendizado N
                     ControllerPerceptron cp = new ControllerPerceptron (caminho, a, b, c, n);
-                    cp.perceptron();
+                    campoResultado.setText(cp.perceptron());
                 }
             }catch(NumberFormatException e){//caso tenha erro na conversão aparece a mensagem
                 JOptionPane.showMessageDialog(null, "ERRO!! Campos da reta e da taxa de aprendizado"+
@@ -272,6 +272,10 @@ public class ViewPerceptron extends javax.swing.JFrame {
     private void campoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNActionPerformed
+
+    private void campoResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoResultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoResultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,14 +318,13 @@ public class ViewPerceptron extends javax.swing.JFrame {
     private javax.swing.JTextField campoA;
     private javax.swing.JTextField campoB;
     private javax.swing.JTextField campoC;
-    private javax.swing.JTextArea campoGrafico;
     private javax.swing.JTextField campoN;
     private javax.swing.JTextField campoPontos;
+    private javax.swing.JTextField campoResultado;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel textAprendizado;
-    private javax.swing.JLabel textGrafico;
     private javax.swing.JLabel textPontos;
+    private javax.swing.JLabel textResultado;
     private javax.swing.JLabel textReta;
     private javax.swing.JLabel textX;
     private javax.swing.JLabel textY;
